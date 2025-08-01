@@ -8,51 +8,72 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Cyberpunk Dark Theme */
+    --background: 220 26% 6%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 27% 8%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 27% 8%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 193 100% 50%;
+    --primary-foreground: 220 26% 6%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 280 100% 70%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 27% 12%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 280 100% 70%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 27% 12%;
+    --input: 220 27% 12%;
+    --ring: 193 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Custom 3D Portfolio Colors */
+    --cyber-blue: 193 100% 50%;
+    --cyber-purple: 280 100% 70%;
+    --cyber-pink: 330 100% 70%;
+    --cyber-green: 120 100% 50%;
+    --neon-glow: 193 100% 80%;
+    
+    /* Gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(var(--cyber-blue)), hsl(var(--cyber-purple)));
+    --gradient-neon: linear-gradient(90deg, hsl(var(--cyber-blue)), hsl(var(--cyber-pink)));
+    --gradient-holographic: linear-gradient(45deg, 
+      hsl(var(--cyber-blue)) 0%, 
+      hsl(var(--cyber-purple)) 25%, 
+      hsl(var(--cyber-pink)) 50%, 
+      hsl(var(--cyber-green)) 75%, 
+      hsl(var(--cyber-blue)) 100%);
+    
+    /* Shadows & Glows */
+    --shadow-cyber: 0 0 20px hsl(var(--cyber-blue) / 0.3);
+    --shadow-purple: 0 0 20px hsl(var(--cyber-purple) / 0.3);
+    --shadow-neon: 0 0 40px hsl(var(--neon-glow) / 0.4);
+    --glow-text: 0 0 10px hsl(var(--cyber-blue) / 0.5);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 220 27% 8%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 193 100% 50%;
+    --sidebar-primary-foreground: 220 26% 6%;
+    --sidebar-accent: 220 27% 12%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 27% 12%;
+    --sidebar-ring: 193 100% 50%;
   }
 
   .dark {
@@ -100,6 +121,51 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: var(--glow-text);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  .animate-rotate-slow {
+    animation: rotate 20s linear infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(var(--cyber-blue) / 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 40px hsl(var(--cyber-blue) / 0.6);
+    }
+  }
+  
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 }
